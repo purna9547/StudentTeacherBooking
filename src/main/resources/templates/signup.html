@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+      animation: fade-in 1s ease-in;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #ff3366; /* Sexy pink accent */
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #ff3366;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #fff;
+      transition: background-color 0.3s ease;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #ff3366;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff1f50;
+      transform: translateY(-3px);
+    }
+
+    .terms {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .terms a {
+      color: #ff3366;
+      text-decoration: none;
+    }
+    #purna{
+      text-align: right;
+      margin-top: 13px;
+      margin-right: 5px;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    #purna a {
+
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    .terms a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+        max-width: 90%;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 16px;
+      }
+    }
+
+    /* Keyframe Animation */
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div th:if="${message}" class="alert-success">
+    <p th:text="${message}"></p>
+  </div>
+  <h1>Create Account</h1>
+
+  <form th:action="@{/signup}" th:object="${newUser}" method="POST">
+    <label for="fullname">Full Name</label>
+    <input th:field="*{fullname}" type="text" id="fullname" name="fullname" required>
+
+    <label for="email">Email Address</label>
+    <input th:field="*{email}" type="email" id="email" name="email" required>
+
+    <label for="password">Password</label>
+    <input th:field="*{password}" type="password" id="password" name="password" required>
+
+    <button type="submit">Register</button>
+
+    <div class="terms" id="purna">
+      <a href="/login">already registerd</a>
+    </div>
+
+    <!--        <p class="terms">-->
+    <!--            By signing up, you agree to our <a href="/terms">Terms & Conditions</a> required.-->
+    <!--        </p>-->
+
+    <p class="terms">
+      <input type="checkbox" id="terms" name="terms" required>
+      By signing up, you agree to our <a href="/terms">Terms & Conditions</a>
+    </p>
+  </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Booking Portal</title>
+  <style>
+    /* Reset and Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center/cover;
+      color: white;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #FFD700;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+    }
+
+    /* Button Styles */
+    .button {
+      display: inline-block;
+      padding: 15px 30px;
+      margin-top: 10px;
+      font-size: 1em;
+      font-weight: bold;
+      color: #333;
+      background-color: #FFD700;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #FFC107;
+      transform: translateY(-5px);
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Media Query for Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+      .container {
+        max-width: 90%;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1s ease-in-out;
+      }
+
+
+      p {
+        font-size: 1em;
+      }
+
+      .button {
+        padding: 12px 25px;
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Welcome, Students!</h1>
+  <p>Explore courses, book sessions with top educators, and embark on your learning journey with ease.</p>
+  <a href="/signup" class="button">Get Started</a>
+  <a href="courses.html" class="button">Browse Courses</a>
+</div>
+
+</body>
+</html>

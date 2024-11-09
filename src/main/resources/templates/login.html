@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Resetting margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6); /* Darker overlay for better contrast */
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            animation: pop-in 0.5s ease-out;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffcc00; /* Bright accent color */
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #ffcc00; /* Bright accent color */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #fff;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #ffcc00; /* Bright accent color */
+            color: black;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background-color: #ffb700;
+            transform: scale(1.05);
+        }
+
+        /* Add "Forgot Password" link */
+        .forgot-password {
+            display: block;
+            text-align: right;
+            margin-top: -15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #ffcc00; /* Bright accent color */
+
+        }
+
+        /* Responsive design for mobile */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                max-width: 90%;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+        }
+
+        /* Animation for container */
+        @keyframes pop-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Login</h1>
+    <form th:action="@{/login}" th:object="${newUser}" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <a href="forget" class="forgot-password">Forgot Password?</a>
+
+
+        <button type="submit">Log In</button>
+    </form>
+</div>
+
+</body>
+</html>
