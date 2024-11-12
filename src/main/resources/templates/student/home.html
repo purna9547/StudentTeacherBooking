@@ -79,6 +79,56 @@
             background-color: #FFC107;
             transform: translateY(-3px);
         }
+        .profile-pic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6D5BBA, #8F9CF0); /* Gradient background */
+            color: #ffffff;
+            font-size: 3.5em;
+            font-weight: 700;
+            font-family: 'Georgia', serif; /* Elegant serif font */
+            text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s, box-shadow 0.4s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Hover Effect */
+        .profile-pic:hover {
+            transform: scale(1.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Decorative Inner Circle */
+        .profile-pic::before {
+            content: "";
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+            animation: rotate 4s infinite linear;
+        }
+
+        /* Initial letter styling */
+        .profile-pic span {
+            position: relative;
+            z-index: 2;
+            text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Animation for Inner Circle */
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
         /* Animation */
         @keyframes fadeIn {
@@ -114,9 +164,13 @@
 
 <div class="container">
     <div class="profile-pic">
-        <img src="https://via.placeholder.com/150" alt="Student Profile Picture">
+<!--        <img src="https://via.placeholder.com/150" alt="Student Profile Picture">-->
+
+        <span th:text="${currentUser.fullname.substring(0, 1).toUpperCase()}">J</span>
+
     </div>
-    <h1 th:text="${currentUser.fullname}">Welcome, []!</h1>
+<!--    <h1 th:text="${currentUser.fullname}">Welcome, []!</h1>-->
+    <h1 th:text="'Welcome, '+${currentUser.fullname}">Welcome Student</h1>
     <p>Access your courses, schedule sessions, and stay updated with the latest content curated for you.</p>
     <a th:href="@{/student/editprofile(id=${currentUser.id})}" class="button">Edit Profile</a>
     <a href="bookappoinment" class="button">Book Appointment</a>

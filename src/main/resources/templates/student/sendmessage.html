@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send Message to Teacher</title>
+  <style>
+    /* Reset and Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #e8f0f2;
+      color: #333;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      color: #3498db;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      font-size: 1em;
+      color: #666;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    select,
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      font-size: 1em;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    select:focus,
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: #3498db;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #3498db;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #2979b5;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      h1 {
+        font-size: 1.6em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Send Message to Teacher</h1>
+
+  <form action="/send-message" method="POST">
+    <!-- Select Teacher -->
+    <div class="form-group">
+      <label for="teacher">Select Teacher:</label>
+      <select id="teacher" name="teacher" required>
+        <option value="">-- Choose a Teacher --</option>
+        <option value="teacher1">Ms. Alice Johnson</option>
+        <option value="teacher2">Mr. Brian Lee</option>
+        <option value="teacher3">Dr. Sophia Green</option>
+        <!-- Add more teacher options as needed -->
+      </select>
+    </div>
+
+    <!-- Subject -->
+    <div class="form-group">
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
+    </div>
+
+    <!-- Message Body -->
+    <div class="form-group">
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+    </div>
+
+    <!-- Send Button -->
+    <button type="submit">Send Message</button>
+  </form>
+</div>
+
+</body>
+</html>

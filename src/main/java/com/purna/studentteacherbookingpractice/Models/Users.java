@@ -26,6 +26,6 @@ public class Users {
     private String ph;
     private String password;
     private String role;
-//    private String action;
+    private String action;
 
 }

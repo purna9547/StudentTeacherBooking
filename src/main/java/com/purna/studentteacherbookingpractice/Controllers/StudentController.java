@@ -57,9 +57,7 @@ public class StudentController {
     public String submitEditForm(@ModelAttribute("userInfo") Users users){
         System.out.println(users);
         UUID id=users.getId();
-
         userService.updateStudent(id,users);
-//        RedirectView rd=new RedirectView("/student/home");
         return "redirect:/student/home";
     }
 
