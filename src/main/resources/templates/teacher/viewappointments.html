@@ -88,27 +88,53 @@
             gap: 10px;
         }
 
-        .button {
-            padding: 10px 20px;
-            font-size: 0.9em;
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        /* Approve Button Style */
+        .button a {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1em;
             font-weight: bold;
             color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .button.approve {
             background-color: #28a745;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .button.reject {
+        .button a:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Reject Button Style */
+        .btn a {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            color: #fff;
             background-color: #dc3545;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .button:hover {
-            transform: scale(1.05);
+        .btn a:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
         /* Responsive Design */
@@ -134,18 +160,25 @@
     <!-- All Appointments Section -->
     <div class="section">
         <h2>All Appointments</h2>
+        <div>Number of Appointment : <span th:text="${#lists.size(allAppointment)}"></span></div>
         <div th:each="appointment : ${allAppointment}" class="appointment-card">
             <div class="appointment-info">
                 <p><span>Student Name:</span> <span th:text="${appointment.studentName}">John Doe</span></p>
                 <p><span>Appointment Date:</span> <span th:text="${appointment.date}">2023-11-15</span></p>
                 <p><span>Purpose:</span> <span th:text="${appointment.purpose}">Discuss project progress</span></p>
+
             </div>
             <div class="buttons">
-                <<a href="#" role="button"
+                <div class="button">
+                <a  role="button"
                     th:href="@{/teacher/approve(id=${appointment.appointmentId})}">Approve</a>
-                <a href="#"  role="button" th:href="@{/teacher/reject(id=${appointment.appointmentId})}">Reject</a>
+                </div>
+                <div class="btn">
+                <a  role="button" th:href="@{/teacher/reject(id=${appointment.appointmentId})}">Reject</a>
+                </div>
+
             </div>
-<!--            <div>Number of Appointment : <span th:text="${#lists.size(allAppointment)}"></span></div>-->
+
 
         </div>
     </div>
@@ -153,13 +186,15 @@
     <!-- Upcoming Appointments Section -->
     <div class="section">
         <h2>Upcoming Appointments</h2>
+        <div>Number of upcoming appointment : <span th:text="${#lists.size(upcomingAppointment)}"></span></div>
         <div th:each="appointment : ${upcomingAppointment}" class="appointment-card">
             <div class="appointment-info">
                 <p><span>Student Name:</span> <span th:text="${appointment.studentName}">Alice Brown</span></p>
                 <p><span>Appointment Date:</span> <span th:text="${appointment.date}">2023-12-02</span></p>
                 <p><span>Purpose:</span> <span th:text="${appointment.purpose}">Discuss thesis topic</span></p>
+
             </div>
-<!--            <div>Number of upcoming appointment : <span th:text="${#lists.size(upcomingAppointment)}"></span></div>-->
+
 
         </div>
     </div>
@@ -167,13 +202,15 @@
 <!--    &lt;!&ndash; Past Appointments Section &ndash;&gt;-->
     <div class="section">
         <h2>Past Appointments</h2>
+        <div>Number of past appointment : <span th:text="${#lists.size(pastAppointment)}"></span></div>
         <div th:each="appointment : ${pastAppointment}" class="appointment-card">
             <div class="appointment-info">
                 <p><span>Student Name:</span> <span th:text="${appointment.studentName}">Tom Harris</span></p>
                 <p><span>Appointment Date:</span> <span th:text="${appointment.date}">2023-10-10</span></p>
                 <p><span>Purpose:</span> <span th:text="${appointment.purpose}">Exam preparation guidance</span></p>
+
             </div>
-            <div>Number of past appointment : <span th:text="${#lists.size(pastAppointment)}"></span></div>
+<!--            <div>Number of past appointment : <span th:text="${#lists.size(pastAppointment)}"></span></div>-->
         </div>
     </div>
 </div>

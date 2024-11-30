@@ -27,5 +27,6 @@ public class Users {
     private String password;
     private String role;
     private String action;
+    private int otp;
 
 }

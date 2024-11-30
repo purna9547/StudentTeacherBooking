@@ -71,7 +71,7 @@ public class StudentController {
     }
 
     @PostMapping("/bookappoinment")
-    public String submitAppointmentForm(@ModelAttribute("appointmentDetails") Appointment appointment){
+    public String submitAppointmentForm(@ModelAttribute("appointmentDetails") Appointment appointment) throws Exception {
         appointmentService.saveAppointment(appointment);
         return "redirect:/student/bookappoinment";
     }

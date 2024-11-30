@@ -104,7 +104,22 @@
 
         .forgot-password:hover {
             color: #ffcc00; /* Bright accent color */
+        }
 
+        .oauth2-login {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .oauth2-login a {
+            color: #ffcc00; /* Bright accent color */
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .oauth2-login a:hover {
+            color: #ffb700;
         }
 
         /* Responsive design for mobile */
@@ -153,9 +168,12 @@
         <input type="password" id="password" name="password" required>
         <a href="forget" class="forgot-password">Forgot Password?</a>
 
-
         <button type="submit">Log In</button>
     </form>
+    <div class="oauth2-login">
+        <h3>Or login with</h3>
+        <a th:href="@{/oauth2/authorization/google}">Google</a>
+    </div>
 </div>
 
 </body>

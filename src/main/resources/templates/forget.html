@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <style>
+        /* Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #A1C4FD, #C2E9FB);
+            color: #333;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .container h1 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .container p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #A1C4FD;
+            box-shadow: 0 4px 8px rgba(161, 196, 253, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px 0;
+            font-size: 1em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #4C9AFF;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #357ABD;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #4C9AFF;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #357ABD;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form th:object="${forgotPass}" th:action="@{/forget}" method="POST">
+    <h1>Forgot Password?</h1>
+    <p>Enter your email address below, and we’ll send you a link to reset your password.</p>
+
+    <div class="input-group">
+        <input th:field="*{email}" type="email" placeholder="Enter your email address" required>
+    </div>
+
+    <button class="submit-btn">Send Reset Link</button>
+    </form>
+<!--    <a href="login.html" class="back-link">← Back to Login</a>-->
+</div>
+
+</body>
+</html>

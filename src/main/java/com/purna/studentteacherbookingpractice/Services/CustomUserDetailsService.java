@@ -24,8 +24,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserRepo userRepo;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users users= userRepo.findByUserName(username);
+    public UserDetails loadUserByUsername(String emailUsername) throws UsernameNotFoundException {
+        Users users= userRepo.findByEmailOrUserName(emailUsername,emailUsername);
+        System.out.println(emailUsername);
+        System.out.println("jhgfd");
+        System.out.println(users);
         if (users==null){
             throw new UsernameNotFoundException("User not found error");
 
@@ -34,7 +37,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         Collection<? extends GrantedAuthority> authorities = authorities(users);
 
-        return new User(username, users.getPassword(), authorities);
+        return new org.springframework.security.core.userdetails.User(users.getUserName(), users.getPassword(), authorities);
     }
     public Collection<? extends GrantedAuthority> authorities(Users users) {
         String rolesString = users.getRole().toString();
