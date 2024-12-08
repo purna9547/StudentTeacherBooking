@@ -127,4 +127,19 @@ public class UserService {
         getGenerateOtp(email,true);
         return false;
     }
+
+    public Users registerNewTeacher(Users users) {
+        String name=users.getFullname().toLowerCase();
+        String fname=name.split(" ")[0];
+        Random random= new Random();
+        int rand= random.nextInt(1000,10000);
+//        int pass=random.nextInt()
+        String username=fname+rand;
+        users.setUserName(username);
+        int pass=1234;
+        users.setPassword(passwordEncoder.encode(String.valueOf(pass)));
+        users.setRole(String.valueOf(UserRole.TEACHER));
+        return userRepo.save(users);
+
+    }
 }

@@ -45,7 +45,7 @@ public class StudentController {
         }
 //        System.out.println("1");
         Users editUser = userService.findById(id);
-        System.out.println(editUser);
+        //System.out.println(editUser);
         model.addAttribute("userInfo", editUser);
         model.addAttribute("currentUser", userService.getAuthenticatedUser());
 //        System.out.println("2");
@@ -55,7 +55,7 @@ public class StudentController {
 
     @PostMapping("/editprofile")
     public String submitEditForm(@ModelAttribute("userInfo") Users users){
-        System.out.println(users);
+        //System.out.println(users);
         UUID id=users.getId();
         userService.updateStudent(id,users);
         return "redirect:/student/home";

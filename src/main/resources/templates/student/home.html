@@ -173,7 +173,9 @@
     <h1 th:text="'Welcome, '+${currentUser.fullname}">Welcome Student</h1>
     <p>Access your courses, schedule sessions, and stay updated with the latest content curated for you.</p>
     <a th:href="@{/student/editprofile(id=${currentUser.id})}" class="button">Edit Profile</a>
+
     <a href="bookappoinment" class="button">Book Appointment</a>
+    <a th:href="@{/logout}" class="button">Log Out</a>
 </div>
 
 </body>
