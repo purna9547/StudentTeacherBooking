@@ -97,6 +97,10 @@
       margin-bottom: 15px;
       background: #007bff;
       color: white;
+      padding: 3px;
+      border: 2px solid #007bff;
+      border-radius: 5px;
+
     }
 
     /* Tables */
@@ -124,21 +128,33 @@
     .btn-edit {
       background: #ffc107;
       color: white;
+      padding: 3px;
+      border: 2px solid #ffc107;
+      border-radius: 5px;
     }
 
     .btn-delete {
       background: #dc3545;
       color: white;
+      padding: 3px;
+      border: 2px solid #dc3545;
+      border-radius: 5px;
     }
 
     .btn-approve {
       background: #28a745;
       color: white;
+      padding: 3px;
+      border: 2px solid #28a745;
+      border-radius: 5px;
     }
 
     .btn-reject {
       background: #dc3545;
       color: white;
+      padding: 3px;
+      border: 2px solid #dc3545;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -150,7 +166,7 @@
     <nav>
       <ul class="nav-links">
         <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a th:href="@{/logout}" class="button">Log Out</a></li>
       </ul>
     </nav>
   </div>
@@ -174,24 +190,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>1</td>
-          <td>John Doe</td>
-          <td>john.doe@example.com</td>
+        <tr th:each="teacher:${teacherList}">
+          <td th:text="${teacher.id}">1</td>
+          <td th:text="${teacher.fullname}">John Doe</td>
+          <td th:text="${teacher.email}">john.doe@example.com</td>
           <td class="action-buttons">
-            <button class="btn-edit">Update</button>
-            <button class="btn-delete">Delete</button>
+            <a th:href="@{/admin/updateTeacher(id=${teacher.id})}" class="btn-edit" role="button">Update</a>
+            <a th:href="@{/admin/delete/{id}(id=${teacher.id})}" class="btn-delete" role="button">Delete</a>
+<!--            <button class="btn-edit">Update</button>-->
+<!--            <button class="btn-delete">Delete</button>-->
           </td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>Jane Smith</td>
-          <td>jane.smith@example.com</td>
-          <td class="action-buttons">
-            <button class="btn-edit">Update</button>
-            <button class="btn-delete">Delete</button>
-          </td>
-        </tr>
+<!--        <tr>-->
+<!--          <td>2</td>-->
+<!--          <td>Jane Smith</td>-->
+<!--          <td>jane.smith@example.com</td>-->
+<!--          <td class="action-buttons">-->
+<!--            <button class="btn-edit">Update</button>-->
+<!--            <button class="btn-delete">Delete</button>-->
+<!--          </td>-->
+<!--        </tr>-->
         </tbody>
       </table>
     </section>
@@ -209,24 +227,26 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>101</td>
-          <td>Emily Clark</td>
-          <td>emily.clark@example.com</td>
+        <tr th:each="student:${pendingStudentList}">
+          <td th:text="${student.id}">101</td>
+          <td th:text="${student.fullname}">Emily Clark</td>
+          <td th:text="${student.email}">emily.clark@example.com</td>
           <td class="action-buttons">
-            <button class="btn-approve">Approve</button>
-            <button class="btn-reject">Reject</button>
+            <a th:href="@{/admin/approve/{id}(id=${student.id})}" class="btn-approve button" role="button">Approve</a>
+            <a th:href="@{/admin/reject/{id}(id=${student.id})}" class="btn-reject button" role="button">Reject</a>
+<!--            <button class="btn-approve">Approve</button>-->
+<!--            <button class="btn-reject">Reject</button>-->
           </td>
         </tr>
-        <tr>
-          <td>102</td>
-          <td>Michael Johnson</td>
-          <td>michael.johnson@example.com</td>
-          <td class="action-buttons">
-            <button class="btn-approve">Approve</button>
-            <button class="btn-reject">Reject</button>
-          </td>
-        </tr>
+<!--        <tr>-->
+<!--          <td>102</td>-->
+<!--          <td>Michael Johnson</td>-->
+<!--          <td>michael.johnson@example.com</td>-->
+<!--          <td class="action-buttons">-->
+<!--            <button class="btn-approve">Approve</button>-->
+<!--            <button class="btn-reject">Reject</button>-->
+<!--          </td>-->
+<!--        </tr>-->
         </tbody>
       </table>
     </section>

@@ -46,6 +46,7 @@ public class UserService {
         users.setUserName(userName);
         users.setPassword(passwordEncoder.encode(users.getPassword()));
         users.setRole(String.valueOf(UserRole.STUDENT));
+        users.setAction("Pending");
         return userRepo.save(users);
     }
 
@@ -61,13 +62,25 @@ public class UserService {
     }
 
     public Users findById(UUID id) {
+        System.out.println(id);
         return userRepo.findById(id).get();
+
     }
     public void updateStudent(UUID id,Users users){
         Users updatestudent=findById(id);
         updatestudent.setFullname(users.getFullname());
         updatestudent.setEmail(users.getEmail());
         userRepo.save(updatestudent);
+    }
+
+    public void updateTeacher(UUID id, Users users){
+        Users updateteacher=findById(id);
+
+        updateteacher.setFullname(users.getFullname());
+        updateteacher.setEmail(users.getEmail());
+        updateteacher.setPassword(passwordEncoder.encode(users.getPassword()));
+//        users.setPassword(passwordEncoder.encode(users.getPassword()));
+        userRepo.save(updateteacher);
     }
 
     public List<Users> getUserByRole(String role) {
@@ -136,10 +149,35 @@ public class UserService {
 //        int pass=random.nextInt()
         String username=fname+rand;
         users.setUserName(username);
-        int pass=1234;
+        int pass=123;
         users.setPassword(passwordEncoder.encode(String.valueOf(pass)));
         users.setRole(String.valueOf(UserRole.TEACHER));
+        users.setAction("Approved");
         return userRepo.save(users);
 
+    }
+
+    public List<Users> getPendingStudent(){
+        List<Users> allUser=userRepo.findAll();
+        List<Users>res=new ArrayList<>();
+        for(Users u:allUser){
+            if(u.getAction().equals("Pending")){
+                res.add(u);
+            }
+        }
+        return res;
+    }
+
+    public void approveStudent(UUID id){
+        Users users=findById(id);
+        users.setAction("Approve");
+//        users.setUserName();
+        userRepo.save(users);
+    }
+    public void rejectStudent(UUID id){
+        userRepo.deleteById(id);
+    }
+    public void deleteTeacher(UUID id){
+        userRepo.deleteById(id);
     }
 }
