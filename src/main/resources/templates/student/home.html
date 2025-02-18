@@ -79,6 +79,7 @@
             background-color: #FFC107;
             transform: translateY(-3px);
         }
+
         .profile-pic {
             display: flex;
             justify-content: center;
@@ -141,6 +142,40 @@
                 transform: translateY(0);
             }
         }
+        .clock-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 20px 40px;
+            font-size: 3.5em;
+            font-weight: bold;
+            color: red; /* Neon Cyan */
+            text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #00ffff;
+            background: rgba(255, 255, 255, 0.1); /* Frosted Glass */
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            text-align: center;
+            letter-spacing: 3px;
+            transition: transform 0.3s ease-in-out;
+            animation: glow-pulse 1.5s infinite alternate ease-in-out;
+        }
+
+        /* Hover Effect */
+        .clock-container:hover {
+            transform: scale(1.1);
+        }
+
+        /* Glowing Pulse Animation */
+        @keyframes glow-pulse {
+            from {
+                text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+            }
+            to {
+                text-shadow: 0 0 15px #0ff, 0 0 25px #0ff, 0 0 35px #00ffff;
+            }
+        }
 
         /* Responsive Design */
         @media (max-width: 600px) {
@@ -162,21 +197,35 @@
 </head>
 <body>
 
+<div class="clock-container" id="clock">00:00:00</div>
+
 <div class="container">
     <div class="profile-pic">
-<!--        <img src="https://via.placeholder.com/150" alt="Student Profile Picture">-->
-
-        <span th:text="${currentUser.fullname.substring(0, 1).toUpperCase()}">J</span>
-
+        <img th:if="${currentUser.profilePhotoPath != null}" th:src="@{${currentUser.profilePhotoPath}}" alt="Profile Photo">
+        <span th:if="${currentUser.profilePhotoPath == null}"
+              th:text="${currentUser.fullname != null && currentUser.fullname.length() > 0 ? currentUser.fullname.substring(0, 1) : 'J'}">J</span>
     </div>
-<!--    <h1 th:text="${currentUser.fullname}">Welcome, []!</h1>-->
+
     <h1 th:text="'Welcome, '+${currentUser.fullname}">Welcome Student</h1>
     <p>Access your courses, schedule sessions, and stay updated with the latest content curated for you.</p>
     <a th:href="@{/student/editprofile(id=${currentUser.id})}" class="button">Edit Profile</a>
-
     <a href="bookappoinment" class="button">Book Appointment</a>
+    <a href="chat" class="button">Solve Questions</a>
+    <a href="courses" class="button">Browse Courses</a>
     <a th:href="@{/logout}" class="button">Log Out</a>
 </div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours().toString().padStart(2, '0');
+        let minutes = now.getMinutes().toString().padStart(2, '0');
+        let seconds = now.getSeconds().toString().padStart(2, '0');
+        document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
 
 </body>
 </html>

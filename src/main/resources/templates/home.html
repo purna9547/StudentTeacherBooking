@@ -18,8 +18,9 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center/cover;
+      background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8MHx8fGVufDB8fHx8&ixlib=rb-1.2.1&q=80&w=1080') no-repeat center center/cover;
       color: white;
+      position: relative;
     }
 
     .container {
@@ -66,33 +67,59 @@
       transform: translateY(-5px);
     }
 
-    /* Animation */
-    @keyframes fadeIn {
+    /* Clock Styles */
+    .clock-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 20px 40px;
+      font-size: 3.5em;
+      font-weight: bold;
+      color: red; /* Neon Cyan */
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #00ffff;
+      background: rgba(255, 255, 255, 0.1); /* Frosted Glass */
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      border: 2px solid rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+      text-align: center;
+      letter-spacing: 3px;
+      transition: transform 0.3s ease-in-out;
+      animation: glow-pulse 1.5s infinite alternate ease-in-out;
+    }
+
+    /* Hover Effect */
+    .clock-container:hover {
+      transform: scale(1.1);
+    }
+
+    /* Glowing Pulse Animation */
+    @keyframes glow-pulse {
       from {
-        opacity: 0;
-        transform: translateY(-20px);
+        text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
       }
       to {
-        opacity: 1;
-        transform: translateY(0);
+        text-shadow: 0 0 15px #0ff, 0 0 25px #0ff, 0 0 35px #00ffff;
       }
     }
 
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .clock-container {
+        font-size: 2.5em;
+        padding: 15px 30px;
+      }
+    }
     /* Media Query for Responsive Design */
     @media (max-width: 768px) {
       h1 {
         font-size: 2em;
       }
+
       .container {
         max-width: 90%;
         padding: 20px;
-        background: rgba(0, 0, 0, 0.7);
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        animation: fadeIn 1s ease-in-out;
       }
-
 
       p {
         font-size: 1em;
@@ -102,17 +129,47 @@
         padding: 12px 25px;
         font-size: 0.9em;
       }
+
+      .clock-container {
+        top: 10px;
+        right: 10px;
+        font-size: 1.2em;
+        padding: 8px 15px;
+      }
     }
   </style>
 </head>
 <body>
 
+<!-- Real-Time Clock -->
+<div class="clock-container" id="clock">00:00:00</div>
+
 <div class="container">
-  <h1>Welcome, Students!</h1>
+  <h1>Welcome, Users!</h1>
   <p>Explore courses, book sessions with top educators, and embark on your learning journey with ease.</p>
   <a href="/signup" class="button">Get Started</a>
   <a href="courses.html" class="button">Browse Courses</a>
 </div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+
+    // Format time with leading zeros
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    document.getElementById('clock').textContent = hours + ':' + minutes + ':' + seconds;
+  }
+
+  // Update clock every second
+  setInterval(updateClock, 1000);
+  updateClock(); // Initialize clock immediately
+</script>
 
 </body>
 </html>

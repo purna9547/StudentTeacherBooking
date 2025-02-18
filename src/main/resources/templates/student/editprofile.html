@@ -170,13 +170,16 @@
         <span th:text="${currentUser.fullname.substring(0, 1)}">J</span>
     </div>
     <h1>Edit Profile</h1>
-    <form th:action="@{/student/editprofile}" th:object="${userInfo}" method="POST">
+    <form th:action="@{/student/editprofile}" th:object="${userInfo}" method="POST"  enctype="multipart/form-data">
         <input type="hidden" th:field="*{id}">
         <label for="name">Full Name:</label>
         <input th:field="*{fullname}" type="text" id="name" required>
 
         <label for="email">Email:</label>
         <input th:field="*{email}" type="email" id="email" required>
+
+        <label for="profilePhoto">Profile Photo:</label>
+        <input th:field="*{profilePhotoPath}" type="file" id="profilePhoto" name="profilePhoto" accept="image/*">
 
         <button type="submit" class="button">Save Changes</button>
     </form>

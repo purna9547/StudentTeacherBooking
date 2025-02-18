@@ -28,5 +28,6 @@ public class Users {
     private String role;
     private String action;
     private int otp;
+    private String profilePhotoPath;
 
 }
